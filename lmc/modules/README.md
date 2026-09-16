@@ -20,6 +20,8 @@
 | [dict](dict.md) | 通用键值容器的结构、所有权规则、序列化格式与并发约束 | `libglusterfs/src/dict.c` |
 | [inode 与 inode 表](inode.md) | inode 身份与路径解耦、dentry、ctx 槽位、引用与淘汰 | `libglusterfs/src/inode.c` |
 | [fd](fd.md) | fd 的身份与生命周期、匿名 fd、fdtable 与整数 fd 分配 | `libglusterfs/src/fd.c` |
+| [snapview-server](snapview-server.md) | 自助访问快照的服务端：按需建立 libgfapi 实例、合成 GFID、只读能力表 | `xlators/features/snapview-server/` |
+| [snapview-client](snapview-client.md) | 挂载点内的快照入口：双子卷路由、虚拟 inode、只读语义 | `xlators/features/snapview-client/` |
 
 ## 规划
 

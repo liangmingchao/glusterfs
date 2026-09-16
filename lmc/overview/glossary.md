@@ -140,6 +140,18 @@ graph，集群版本槽位数为 `GF_MAX_RELEASES`（`libglusterfs/src/glusterfs
 **rebalance**（再平衡）
 子卷集合变化后，重新分布已有文件以恢复负载均衡的过程。
 
+**快照**（snapshot）
+对整卷全部 brick 的后端存储做一次时间点副本，并把副本组织成只读卷的能力。粒度是卷，
+不是文件或目录。原理与流程见 [快照](../features/snapshot.md)。
+
+**快照卷**（snap volume）
+由源卷 volinfo 复制并改写而来的卷对象，其 brick 指向后端副本路径。它与普通卷一样有
+volfile、brick 进程与状态，默认创建后处于停止状态，需要激活才对外服务。
+
+**快照后端**（snapshot backend）
+提供时间点副本能力的具体实现，通过 `glusterd_snap_ops` 接口接入。当前实现为精简置备的
+LVM 逻辑卷与 ZFS dataset 两种，见 [快照](../features/snapshot.md#实现原理)。
+
 ## 进程与运维
 
 **glusterd**
@@ -150,6 +162,19 @@ graph，集群版本槽位数为 `GF_MAX_RELEASES`（`libglusterfs/src/glusterfs
 
 **glustershd**
 自愈守护进程，承载卷的自愈 graph。
+
+**snapd**
+用户自助访问快照的服务进程，每个开启该能力的卷一个，进程内承载 `features/snapview-server`，
+按需为快照建立 `libgfapi` 客户端实例。见 [snapview-server](../modules/snapview-server.md)。
+
+**USS**（User Serviceable Snapshots）
+「用户自助访问快照」能力的缩写，通过卷选项 `features.uss` 开启。开启后挂载点下出现
+`.snaps` 入口目录，用户可自行浏览只读快照，无需管理员逐个激活与挂载。见
+[snapview-client](../modules/snapview-client.md)。
+
+**barrier**（I/O 屏障）
+在需要全局一致时间点的操作（如快照创建）期间阻塞应用 I/O 的机制。开启与关闭通过下发到
+brick 的 barrier 请求完成，见 [快照](../features/snapshot.md#一致性与异常处理)。
 
 **pass-through**
 xlator 的一种运行状态：被标记为 pass-through 时，未显式实现或按配置需要跳过的 FOP

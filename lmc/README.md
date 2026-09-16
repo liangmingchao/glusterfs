@@ -51,7 +51,8 @@
 ## 覆盖范围
 
 已收录：整体架构、代码地图、术语、构建与测试、xlator 框架、调用栈与 FOP 模型、
-volfile 与图构建、RPC 与传输，以及模块文档 `dict`、`inode`、`fd`。
+volfile 与图构建、RPC 与传输；模块文档 `dict`、`inode`、`fd`、`snapview-server`、
+`snapview-client`；特性文档 `快照`。
 
 按模块与特性的深入分析在 [模块索引](modules/README.md) 与
 [特性索引](features/README.md) 中维护，两者是该层次内容唯一的登记入口。

@@ -16,7 +16,9 @@
 
 ## 已收录
 
-尚无特性级文档。
+| 文档 | 覆盖内容 | 主要涉及模块 |
+| --- | --- | --- |
+| [快照](snapshot.md) | 后端副本原理、创建/激活/浏览/克隆/恢复/删除全流程、一致性与限额 | `glusterd`、快照后端插件、`features/snapview-server`、`features/snapview-client` |
 
 ## 规划
 
@@ -29,7 +31,6 @@
 | 目录与文件分布 | `cluster/dht` | 文件定位算法、目录布局一致性、再平衡 |
 | 纠删码 | `cluster/ec` | 分片布局、读写路径、修复，与副本方案的取舍 |
 | 配额 | `features/quota`、`features/marker`、`quotad` | 统计口径、限额生效范围、超限时的行为 |
-| 快照 | `features/snapview-client`、`features/snapview-server`、`snapd`、`glusterd` 的快照模块 | 快照卷的呈现方式、与源卷的关系、回滚 |
 | 异地复制 | `geo-replication`、`features/changelog` | 同步链路、检查点、断点续传 |
 | 变更追踪与文件清单 | `features/changelog`、`tools/glusterfind` | 变更日志的格式、全量与增量查询 |
 | 位衰减检测 | `features/bit-rot`、`scrubd` | 签名存储位置、扫描与修复调度 |
